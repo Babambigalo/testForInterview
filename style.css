@@ -1,0 +1,58 @@
+body {
+    background-image: url(img/pexels-photo-268415.jpeg);
+}
+
+main {
+    
+}
+
+
+.labelCartQuantity {
+    display: block;
+    max-width: 500px;
+    
+}
+
+.labelCartQuantity, .getMoneyContainer {
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Anton', sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+    color: white;
+    font-family: "Anton";
+}
+
+.cartridgeContainer {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    width: 800px;
+    flex-wrap: wrap;
+}
+
+.cartridge {
+    background-color: rgb(140, 213, 231);
+    width: 100px;
+    padding: 20px;
+    margin: 20px;
+}
+
+.cartridge  select {
+    width: 100px;
+    margin-bottom: 10px;
+}
+
+.cartridgeInput {
+    width: 100px;
+    border: 1px;
+    margin-bottom: 10px;
+}
+
+
+
+.getMoneyContainer {
+    max-width: 500px;
+    margin-top: 20px;
+}
+
