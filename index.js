@@ -65,13 +65,12 @@ function getAndSortCartridge() {
                     if(cartridgesInfo[i].status !== 'disabled' && cartridgesInfo[i].quantity > 0) {
                         let quantityRating = 0;
                         while(amountInput >= cartridgesInfo[i].value && cartridgesInfo[i].quantity > 0) {
-                            if(i === 1 && (amountInput-cartridgesInfo[i].value) % cartridgesInfo[0].value === 0 ) {
-                                amountInput -= cartridgesInfo[i].value;   
-                                cartridgesInfo[i].quantity -= 1;
-                                quantityRating+=1;
-                            }else{
+                            if(i === 1 && (amountInput-cartridgesInfo[i].value) % cartridgesInfo[0].value !== 0 ) {
                                 break;
                             }
+                            amountInput -= cartridgesInfo[i].value;   
+                            cartridgesInfo[i].quantity -= 1;
+                            quantityRating+=1;
                         } 
                         stringOut+=`Купюр по ${cartridgesInfo[i].value} выдано ${quantityRating}шт. \n`;
                     }
