@@ -33,8 +33,8 @@ function getAndSortCartridge() {
     let stringOut ='';
     let cartridgesInfo = [];
     getMoneyBtn.addEventListener('click',()=> {
-        let stringOut ='';
-        let cartridgesInfo = [];
+        // let stringOut ='';
+        // let cartridgesInfo = [];
         if(inputAmount.value.length !== 0){
             let cartridges = document.getElementsByClassName('cartridge');
             //цикл сбора объектов массива cartridgesInfo
@@ -56,27 +56,56 @@ function getAndSortCartridge() {
                     }
                 }
             }
-
-            if(inputAmount.value % cartridgesInfo[0].value === 0 || inputAmount.value % cartridgesInfo[1].value === 0) {
+            // inputAmount.value % cartridgesInfo[0].value === 0 || inputAmount.value % cartridgesInfo[1].value === 0
+            if(inputAmount.value % 100 ===0) { 
+                // let amountInput = Number(document.getElementsByClassName('amountInput')[0].value);
+                // // let stringOut ='';
+                // //цикл вывода данных
+                // for(let i=cartridgesInfo.length-1;i>=0;i--) {
+                //     if(cartridgesInfo[i].status !== 'disabled' && cartridgesInfo[i].quantity > 0) {
+                //         let quantityRating = 0; 
+                //         while(amountInput >= cartridgesInfo[i].value && cartridgesInfo[i].quantity > 0) {
+                //             if(i === 1 && (amountInput-cartridgesInfo[i].value ) % cartridgesInfo[0].value !== 0 ) {
+                //                 break;
+                //             }
+                //             amountInput -= cartridgesInfo[i].value;   
+                //             cartridgesInfo[i].quantity -= 1;
+                //             quantityRating+=1;
+                //         } 
+                //         stringOut+=`Купюр по ${cartridgesInfo[i].value} выдано ${quantityRating}шт. \n`;
+                //     }
+                // }
+                
                 let amountInput = Number(document.getElementsByClassName('amountInput')[0].value);
-                // let stringOut ='';
-                //цикл вывода данных
-                for(let i=cartridgesInfo.length-1;i>=0;i--) {
+                let sum = inputAmount.value;
+                let j = cartridgesInfo.length-1;
+                let i = cartridgesInfo.length-1;
+                let quantityRating = 0;
+                for(i;i>=0;i--) {
                     if(cartridgesInfo[i].status !== 'disabled' && cartridgesInfo[i].quantity > 0) {
-                        let quantityRating = 0;
-                        while(amountInput >= cartridgesInfo[i].value && cartridgesInfo[i].quantity > 0) {
-                            if(i === 1 && (amountInput-cartridgesInfo[i].value) % cartridgesInfo[0].value !== 0 ) {
-                                break;
-                            }
+                        while(j>0) {
+                            sum-=cartridgesInfo[j].value;
+                            j--;
+                        }
+                        if(sum % cartridgesInfo[0].value === 0 || sum === 0) {
                             amountInput -= cartridgesInfo[i].value;   
+                            sum = amountInput;
                             cartridgesInfo[i].quantity -= 1;
                             quantityRating+=1;
-                        } 
-                        stringOut+=`Купюр по ${cartridgesInfo[i].value} выдано ${quantityRating}шт. \n`;
+                            i++;
+                        }else if(sum % cartridgesInfo[0]!==0 || sum < 0) {
+                            j = i-1;
+                            stringOut+=`Купюр по ${cartridgesInfo[i].value} выдано ${quantityRating}шт. \n`;
+                            quantityRating = 0;
+                            
+                        }
                     }
+
                 }
+
             }else{
-                alert(`сумма должна быть кратной ${cartridgesInfo[0].value} или ${cartridgesInfo[1].value}`);
+                // alert(`сумма должна быть кратной ${cartridgesInfo[0].value} или ${cartridgesInfo[1].value}`);
+                alert('сумма должна быть кратной 100');
             }
             console.log(cartridgesInfo);
         }else{
@@ -84,9 +113,14 @@ function getAndSortCartridge() {
         }
         console.log(stringOut);
     });
+
+    stringOut ='';
+    cartridgesInfo = [];
     
     console.log(stringOut);
 }
+
+
 
 // function printOutMoney() {
 //     const amountInput = Number(document.getElementsByClassName('amountInput')[0].value);
@@ -111,4 +145,22 @@ getAndSortCartridge();
 
 
 
-
+//  let sum = inputAmount.value;
+//  let j = cartridgesInfo.length-1;
+//  let i = cartridgesInfo.length-1;
+// for(i;i>=0;i--) {
+//     while(j>0) {
+//         sum-=cartridgesInfo[j];
+//         j--;
+//     }
+//     if(sum%cartridgesInfo[0]===0 || sum === 0) {
+//         amountInput -= cartridgesInfo[i].value;   
+//         sum = amountInput;
+//         cartridgesInfo[i].quantity -= 1;
+//         quantityRating+=1;
+//         i++;
+//     }else if(sum % cartridgesInfo[0]!==0 || sum < 0) {
+//         j = i-1;
+//         break;
+//     }
+// }
