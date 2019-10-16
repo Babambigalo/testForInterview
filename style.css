@@ -56,3 +56,11 @@ main {
     margin-top: 20px;
 }
 
+.printOutDiv {
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    font-size: 30px;
+    font-family: "Anton", sans-serif;
+}
